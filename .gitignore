@@ -1,0 +1,6 @@
+.env
+.certs/
+__pycache__/
+study/data/*.json
+analysis/results/
+.cache/

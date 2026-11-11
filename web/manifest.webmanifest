@@ -1,0 +1,10 @@
+{
+  "name": "SimpliSpeak",
+  "short_name": "SimpliSpeak",
+  "description": "Hear hard text in simple words. You choose how simple.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#14213d",
+  "theme_color": "#14213d",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

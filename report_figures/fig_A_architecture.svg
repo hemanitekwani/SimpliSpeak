@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334"/></marker>
+    <style>
+      .panel{fill:#f6f8ff;stroke:#c8d1ee;stroke-width:1.5}
+      .box{fill:#fff;stroke:#9fb0e0;stroke-width:1.2}
+      .acc{fill:#fff7e6;stroke:#e0b45a;stroke-width:1.2}
+      .h{font-size:15px;font-weight:700;fill:#10162a}
+      .t{font-size:12.5px;font-weight:700;fill:#1b2a5a}
+      .s{font-size:11px;fill:#3d4660}
+      .lab{font-size:10.5px;fill:#334;}
+    </style>
+  </defs>
+  <!-- Phone -->
+  <rect class="panel" x="10" y="10" width="290" height="450" rx="14"/>
+  <text class="h" x="24" y="36">Phone browser (web app)</text>
+  <text class="s" x="24" y="52">HTML · CSS · JavaScript, no framework</text>
+  <rect class="box" x="24" y="66" width="262" height="62" rx="9"/>
+  <text class="t" x="36" y="88">Input</text>
+  <text class="s" x="36" y="106">Paste (Clipboard API) · Photo (camera app)</text>
+  <text class="s" x="36" y="121">Type · Built-in examples</text>
+  <rect class="box" x="24" y="138" width="262" height="62" rx="9"/>
+  <text class="t" x="36" y="160">Controls (choose any)</text>
+  <text class="s" x="36" y="178">Touch gestures · Buttons · Voice (en-IN / hi-IN)</text>
+  <text class="s" x="36" y="193">User's own screen reader (ARIA)</text>
+  <rect class="box" x="24" y="210" width="262" height="62" rx="9"/>
+  <text class="t" x="36" y="232">Reading state</text>
+  <text class="s" x="36" y="250">sentence · level · language · playing</text>
+  <text class="s" x="36" y="265">level change keeps the position</text>
+  <rect class="box" x="24" y="282" width="262" height="62" rx="9"/>
+  <text class="t" x="36" y="304">Output</text>
+  <text class="s" x="36" y="322">Speech (English / Hindi voices) · Earcons</text>
+  <text class="s" x="36" y="337">Large text, current sentence highlighted</text>
+  <rect class="acc" x="24" y="354" width="262" height="62" rx="9"/>
+  <text class="t" x="36" y="376">Safety on the phone</text>
+  <text class="s" x="36" y="394">Level lost a fact → fuller safe level</text>
+  <text class="s" x="36" y="409">+ spoken warning; Original one command away</text>
+  <text class="s" x="24" y="444">Web Speech API (speak + listen) · Web Audio</text>
+
+  <!-- arrows phone <-> server -->
+  <line x1="300" y1="150" x2="378" y2="150" stroke="#334" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text class="lab" x="304" y="138">requests</text>
+  <text class="lab" x="304" y="168">text, photo,</text>
+  <text class="lab" x="304" y="181">word, language</text>
+  <line x1="378" y1="300" x2="300" y2="300" stroke="#334" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text class="lab" x="304" y="288">document</text>
+  <text class="lab" x="304" y="318">4 levels per</text>
+  <text class="lab" x="304" y="331">sentence,</text>
+  <text class="lab" x="304" y="344">glossary, flags</text>
+  <text class="lab" x="304" y="400">HTTPS on</text>
+  <text class="lab" x="304" y="413">local Wi-Fi</text>
+
+  <!-- Server -->
+  <rect class="panel" x="380" y="10" width="320" height="450" rx="14"/>
+  <text class="h" x="394" y="36">Laptop: Python 3 HTTPS server</text>
+  <text class="s" x="394" y="52">standard library · self-signed certificate · QR link</text>
+  <rect class="box" x="394" y="66" width="292" height="62" rx="9"/>
+  <text class="t" x="406" y="88">1 · Sentence splitter</text>
+  <text class="s" x="406" y="106">paragraphs → sentences; keeps "Dr.", "Rs."</text>
+  <text class="s" x="406" y="121">splits after "mg.", "etc."; Hindi danda ( । )</text>
+  <rect class="box" x="394" y="138" width="292" height="62" rx="9"/>
+  <text class="t" x="406" y="160">2 · AI: simplify · explain · read photo</text>
+  <text class="s" x="406" y="178">one request per text → Light, Simple, Very simple</text>
+  <text class="s" x="406" y="193">+ glossary (JSON schema), English or Hindi</text>
+  <rect class="acc" x="394" y="210" width="292" height="62" rx="9"/>
+  <text class="t" x="406" y="232">3 · Protected-facts guard</text>
+  <text class="s" x="406" y="250">every number, dose, date, amount kept?</text>
+  <text class="s" x="406" y="265">every warning kept? (English + Hindi)</text>
+  <rect class="box" x="394" y="282" width="292" height="62" rx="9"/>
+  <text class="t" x="406" y="304">4 · Answer cache</text>
+  <text class="s" x="406" y="322">.cache/ai_answers.json — the same text,</text>
+  <text class="s" x="406" y="337">example or word never uses the AI twice</text>
+  <rect class="box" x="394" y="354" width="292" height="62" rx="9"/>
+  <text class="t" x="406" y="376">5 · Offline fallback</text>
+  <text class="s" x="406" y="394">rule-based English simplifier + word list</text>
+  <text class="s" x="406" y="409">when no key, daily limit used up, or busy</text>
+  <text class="s" x="394" y="444">/api/simplify · /api/explain · /api/ocr · /api/samples</text>
+
+  <!-- arrows server <-> cloud -->
+  <line x1="700" y1="168" x2="760" y2="168" stroke="#334" stroke-width="1.6" marker-end="url(#ar)"/>
+  <line x1="760" y1="186" x2="700" y2="186" stroke="#334" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text class="lab" x="704" y="158">prompt</text>
+  <text class="lab" x="704" y="204">JSON</text>
+
+  <!-- Cloud -->
+  <rect class="panel" x="762" y="10" width="188" height="450" rx="14"/>
+  <text class="h" x="776" y="36">Google Gemini API</text>
+  <text class="s" x="776" y="52">model chain, tried in order</text>
+  <rect class="box" x="776" y="66" width="160" height="210" rx="9"/>
+  <text class="s" x="788" y="90">1  gemini-3.5-flash</text>
+  <text class="s" x="788" y="118">2  gemini-3.5-flash-lite</text>
+  <text class="s" x="788" y="146">3  gemini-3.8-flash</text>
+  <text class="s" x="788" y="174">4  gemini-3.7-flash</text>
+  <text class="s" x="788" y="202">5  gemini-3-flash-preview</text>
+  <text class="s" x="788" y="230">6  gemini-3.1-flash-lite</text>
+  <text class="s" x="788" y="262">set in .env (GEMINI_MODELS)</text>
+  <rect class="acc" x="776" y="290" width="160" height="126" rx="9"/>
+  <text class="t" x="788" y="312">Reliability</text>
+  <text class="s" x="788" y="332">daily limit → skip today</text>
+  <text class="s" x="788" y="350">busy → 1 retry, skip 2 min</text>
+  <text class="s" x="788" y="368">whole chain ≤ ~90 s</text>
+  <text class="s" x="788" y="386">"minimal thinking"</text>
+  <text class="s" x="788" y="404">(≈3× faster)</text>
+</svg>

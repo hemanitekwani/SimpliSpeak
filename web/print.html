@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Print Test Text</title>
+<style>
+  :root { --bg: #fff; --text: #000; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #fff; --text: #000; } }
+  :root[data-theme="dark"] { --bg: #fff; --text: #000; }
+  body { background: var(--bg); color: var(--text); font-family: Georgia, "Times New Roman", serif; max-width: 680px; margin: 32px auto; padding: 0 16px; font-size: 16pt; line-height: 1.5; }
+  h1 { font-size: 20pt; }
+  .tools { font-family: system-ui, sans-serif; font-size: 12pt; margin-bottom: 24px; }
+  @media print { .tools { display: none; } body { margin: 0 auto; } }
+</style>
+</head>
+<body>
+<div class="tools">
+  <label>Text: <select id="pick">
+    <option value="bill">Electricity bill</option><option value="leaflet">Medicine leaflet</option>
+    <option value="bank">Bank letter</option><option value="practice">Practice</option>
+  </select></label>
+  <button onclick="print()">Print</button>
+  <p>Print this page for the scanning task. Plain black text on white paper scans best.</p>
+</div>
+<h1 id="title"></h1>
+<div id="body"></div>
+<script>
+  const pick = document.getElementById("pick");
+  async function load(id) {
+    const doc = await (await fetch(`/api/samples/${id}`)).json();
+    document.getElementById("title").textContent = doc.title;
+    document.getElementById("body").innerHTML = doc.sentences.map(s => `<p>${s.original}</p>`).join("");
+  }
+  const id = new URLSearchParams(location.search).get("doc") || "bill";
+  pick.value = id;
+  pick.addEventListener("change", () => load(pick.value));
+  load(id);
+</script>
+</body>
+</html>

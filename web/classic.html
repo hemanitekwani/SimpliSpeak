@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e1726">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>SimpliSpeak</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body class="starting">
+<!-- Screen-reader users who landed in audio mode can always find this first. -->
+<button id="sr-switch" class="sr-only sr-switch" hidden>Use screen reader mode</button>
+<div id="live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+<div id="alert" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+<button id="voice-banner" class="voice-banner" hidden>🔊 No sound? Tap here to turn the voice on</button>
+<div id="toast" class="toast" role="status" hidden></div>
+<button id="fab-voice" class="fab" aria-label="Speak a command" hidden><span aria-hidden="true">🎤</span></button>
+
+<!-- Audio mode: one full-screen gesture surface. Nothing needs to be found by sight. -->
+<div id="surface" class="surface" tabindex="0" hidden></div>
+
+<header class="topbar" id="topbar">
+  <button id="btn-home" class="icon-btn" aria-label="Home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5M5.5 9.5V20h13V9.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="brand"><span class="logo" aria-hidden="true"></span><span id="screen-title">SimpliSpeak</span></div>
+  <span id="mode-chip" class="chip" aria-hidden="true"></span>
+</header>
+<div id="study-banner" class="study-banner" hidden></div>
+
+<main id="main" tabindex="-1">
+
+  <!-- Start -->
+  <section id="s-start" class="screen start" data-title="SimpliSpeak">
+    <div class="start-card">
+      <span class="start-logo" aria-hidden="true"></span>
+      <h1 class="start-name">SimpliSpeak</h1>
+      <p class="start-tag">Hard text, said simply. You choose how simple.</p>
+      <p id="start-status" class="start-status" role="status">Checking…</p>
+      <button id="btn-start" class="start-btn primary" aria-label="Start. SimpliSpeak will read to you out loud.">Start</button>
+      <button id="btn-start-sr" class="start-sr">I use TalkBack or VoiceOver</button>
+    </div>
+  </section>
+
+  <!-- Generic spoken list: home, samples, levels, settings, help, feedback, study questions... -->
+  <section id="s-menu" class="screen" data-title="" hidden>
+    <h2 id="menu-title" class="menu-title"></h2>
+    <p id="menu-prompt" class="menu-prompt"></p>
+    <ul id="menu-list" class="menu-list"></ul>
+    <p id="menu-hint" class="gesture-hint" aria-hidden="true"></p>
+    <p id="menu-tip" class="voice-tip" hidden>🎤 Tap the microphone, then say an option, such as “scan”, “samples” or “back”.</p>
+  </section>
+
+  <!-- Listening -->
+  <section id="s-listen" class="screen" data-title="Listen" hidden>
+    <div class="listen-meta">
+      <span id="l-pos">Part 1 of 1</span>
+      <span id="l-level" class="chip strong">Simple</span>
+    </div>
+    <div class="progress" aria-hidden="true"><div id="l-bar"></div></div>
+    <article class="part-card">
+      <p id="l-text" class="part-text"></p>
+      <p id="l-unsure" class="unsure" hidden></p>
+    </article>
+    <div id="l-words" class="words" hidden></div>
+
+    <!-- Screen-reader mode controls, in order of how often they are needed. -->
+    <div id="l-controls" class="controls" hidden>
+      <button id="c-play" class="primary" data-appvoice>Pause</button>
+      <button id="c-back">◀ Previous</button>
+      <button id="c-next">Next ▶</button>
+      <button id="c-simpler" data-feature>Simpler</button>
+      <button id="c-detail" data-feature>More detail</button>
+      <button id="c-repeat">Repeat</button>
+      <button id="c-original" data-feature>Original wording</button>
+      <button id="c-explain" data-feature class="full">Explain a hard word</button>
+      <button id="c-voice" class="full">🎤 Voice command</button>
+      <button id="c-done" class="full quiet">I have finished</button>
+    </div>
+    <p id="l-voicetip" class="voice-tip" hidden>Say: <b>next</b> · <b>back</b> · <b>repeat</b> · <b>simpler</b> · <b>more detail</b> · <b>original</b> · <b>pause</b> · <b>play</b> · <b>faster</b> · <b>slower</b> · <b>what does hepatic mean</b> · <b>home</b></p>
+    <p class="gesture-hint" data-audio aria-hidden="true">
+      <span>double tap</span> play / pause · <span>swipe ⇆</span> parts · <span>swipe ⇅</span> simpler / more detail ·
+      <span>tap</span> repeat · <span>hold</span> explain · <span>2-finger tap</span> original · <span>2-finger swipe down</span> menu
+    </p>
+  </section>
+
+  <!-- Scan -->
+  <section id="s-scan" class="screen" data-title="Scan paper" hidden>
+    <div class="camera">
+      <video id="scan-video" playsinline muted aria-hidden="true"></video>
+      <div class="frame" aria-hidden="true"></div>
+      <p id="scan-guide" class="scan-guide"></p>
+    </div>
+    <div class="controls two" id="scan-controls">
+      <button id="btn-capture" class="primary">Capture now</button>
+      <label class="btn" for="scan-file">Choose a photo</label>
+      <input type="file" id="scan-file" accept="image/*" capture="environment" class="sr-only" tabindex="-1">
+    </div>
+    <p class="gesture-hint" data-audio aria-hidden="true">I capture by myself when the page is steady · <span>double tap</span> capture now · <span>2-finger swipe down</span> back</p>
+  </section>
+
+  <!-- Type (keyboard needed; for laptops or helpers) -->
+  <section id="s-type" class="screen" data-title="Type or paste" hidden>
+    <label for="type-text" class="field-label">Text to simplify</label>
+    <textarea id="type-text" rows="9" placeholder="Paste or type a letter, leaflet or notice."></textarea>
+    <p id="type-count" class="muted small">0 words</p>
+    <div class="controls two">
+      <button class="primary" id="btn-type-go">Simplify and listen</button>
+      <button id="btn-type-back">Back</button>
+    </div>
+  </section>
+
+  <!-- Working -->
+  <section id="s-working" class="screen center-screen" data-title="Simplifying" hidden>
+    <div class="pulse" aria-hidden="true"><span></span><span></span><span></span></div>
+    <p id="working-msg" class="lead">Simplifying your text…</p>
+    <p class="muted small">This takes a few seconds.</p>
+  </section>
+
+  <!-- Study (facilitator forms) -->
+  <section id="s-study-setup" class="screen form" data-title="Study mode" hidden>
+    <p class="muted">For the facilitator. Sets up a test session; the participant then uses the app normally.</p>
+    <div class="grid2">
+      <div><label for="st-pid" class="field-label">Participant number</label><input id="st-pid" inputmode="numeric" placeholder="e.g. 3"></div>
+      <div><label for="st-age" class="field-label">Age</label><input id="st-age" inputmode="numeric"></div>
+    </div>
+    <label for="st-vision" class="field-label">Vision</label>
+    <select id="st-vision"><option>Blind</option><option>Low vision</option><option>Sighted, blindfolded</option></select>
+    <label for="st-sr" class="field-label">Screen-reader experience</label>
+    <select id="st-sr"><option>None</option><option>Less than 1 year</option><option>1 to 5 years</option><option>More than 5 years</option></select>
+    <label for="st-mode" class="field-label">Interaction mode for this participant</label>
+    <select id="st-mode"><option value="audio">Audio mode (gestures, app voice)</option><option value="reader">Screen reader mode (TalkBack / VoiceOver)</option></select>
+    <label class="check"><input type="checkbox" id="st-consent"> Consent given (consent script read aloud)</label>
+    <p id="st-plan" class="notice" hidden></p>
+    <button class="primary wide" id="btn-study-start">Start session</button>
+    <h3>Results</h3>
+    <p id="st-count" class="muted"></p>
+    <div class="controls two">
+      <button id="btn-export-json">Download all (JSON)</button>
+      <button id="btn-export-csv">Download summary (CSV)</button>
+    </div>
+    <button class="wide" id="btn-study-back">Back to the app</button>
+  </section>
+
+  <section id="s-study-notes" class="screen form" data-title="Interview" hidden>
+    <p class="muted">Facilitator: ask these questions and type short notes.</p>
+    <ol id="int-questions" class="small"></ol>
+    <label for="st-notes" class="field-label">Notes</label>
+    <textarea id="st-notes" rows="8"></textarea>
+    <button class="primary wide" id="btn-study-save">Save session</button>
+  </section>
+
+  <section id="s-study-end" class="screen form" data-title="Saved" hidden>
+    <p class="lead">Thank you. The session is saved.</p>
+    <p id="st-saved" class="muted"></p>
+    <button class="primary wide" id="btn-study-again">Back to study mode</button>
+  </section>
+</main>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

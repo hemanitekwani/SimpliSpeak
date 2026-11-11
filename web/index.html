@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2448d8">
+<meta name="color-scheme" content="light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>SimpliSpeak</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="css/simple.css">
+</head>
+<body>
+<div id="live" class="sr-only" aria-live="polite"></div>
+
+<!-- Opening screen: one tap anywhere. (Phones only allow speech after a tap.) -->
+<div id="welcome" class="welcome">
+  <button id="w-start" class="w-main" aria-label="SimpliSpeak. Tap anywhere to start. SimpliSpeak will speak to you.">
+    <span class="w-logo" aria-hidden="true"></span>
+    <span class="w-name">SimpliSpeak</span>
+    <span class="w-tag">Hard text, said simply.</span>
+    <span class="w-cta">Tap anywhere to start</span>
+    <span class="w-small">I will speak to you. Swipe to hear each button, double tap to choose.</span>
+  </button>
+  <div class="w-row">
+    <button id="w-see" class="w-sr">I can see the screen: use buttons</button>
+    <button id="w-sr" class="w-sr">I use TalkBack or VoiceOver</button>
+  </div>
+</div>
+
+<!-- Touch layer for blind users: swipe right/left = next/previous button, double tap = choose, hold = read screen -->
+<div id="gs" class="gs" hidden></div>
+
+<header class="bar">
+  <button id="b-home" class="brand" aria-label="SimpliSpeak, start over"><span class="logo" aria-hidden="true"></span>SimpliSpeak</button>
+  <button id="b-read" class="ghost" aria-label="Read this screen aloud">🔊 Read screen</button>
+  <button id="b-help" class="ghost">Help</button>
+</header>
+
+<main>
+  <!-- Home: three big buttons, in the order you would use them -->
+  <section id="v-input">
+    <div class="hero">
+      <h1>Hard text, said simply.</h1>
+      <p class="sub">I rewrite hard text in easier words and <b>read it out loud</b>. You choose how simple.</p>
+    </div>
+
+    <div class="langrow">
+      <span class="lbl-inline" id="lang-lbl">Simple version in:</span>
+      <div id="langs" class="seg" role="radiogroup" aria-labelledby="lang-lbl">
+        <button role="radio" data-lang="en" aria-label="English">English</button>
+        <button role="radio" data-lang="hi" aria-label="Hindi" lang="hi">हिंदी</button>
+      </div>
+    </div>
+
+    <div class="big3">
+      <button id="a-paste" class="bigact"><span class="ico" aria-hidden="true">📋</span><b>Paste</b><small>Use text you copied</small></button>
+      <button id="a-scan" class="bigact"><span class="ico" aria-hidden="true">📷</span><b>Photo of paper</b><small>Take a picture of a letter</small></button>
+      <button id="a-sample" class="bigact"><span class="ico" aria-hidden="true">🎧</span><b>Hear an example</b><small>Medicine, bank, bill, library</small></button>
+    </div>
+    <button id="a-listen" class="primary big">🎤 Speak a command</button>
+    <input type="file" id="file" accept="image/*" capture="environment" hidden>
+
+    <details id="typebox" class="typebox">
+      <summary>Or type text yourself</summary>
+      <label for="inp" class="lbl">Your text</label>
+      <textarea id="inp" rows="6" placeholder="Type or paste the hard text here…"></textarea>
+      <button id="b-go" class="primary big">Simplify and read aloud</button>
+    </details>
+
+    <p id="status" class="status"><span class="dot"></span><span id="status-text">Checking…</span></p>
+    <button id="b-test" class="testbtn">🔊 Test sound</button>
+    <p class="muted small" id="test-note">Sound plays from your phone's speaker. If you hear nothing, turn up the media volume, and on iPhone switch off silent mode.</p>
+  </section>
+
+  <!-- Examples -->
+  <section id="v-samples" hidden>
+    <h2 class="title" id="samples-title">Choose an example</h2>
+    <p class="muted" id="samples-note">Tap one, or say its number or name.</p>
+    <div id="samples" class="big3"></div>
+    <button id="s-back" class="back">← Back</button>
+    <button id="s-listen" class="primary big">🎤 Speak a command</button>
+  </section>
+
+  <!-- Camera inside the app: opens by voice too (a phone opens its own camera app only right after a tap) -->
+  <section id="v-cam" hidden>
+    <h2 class="title" id="cam-title">Photo of paper</h2>
+    <div class="camera">
+      <video id="cam-video" playsinline muted aria-hidden="true"></video>
+      <div class="frame" aria-hidden="true"></div>
+      <p id="cam-guide" class="cam-guide" role="status"></p>
+    </div>
+    <button id="cam-shoot" class="primary big">📸 Take the photo now</button>
+    <button id="cam-app" class="wide-ghost">Use the phone's camera app instead</button>
+    <button id="cam-back" class="back">← Back</button>
+  </section>
+
+  <!-- Working -->
+  <section id="v-work" hidden>
+    <div class="center">
+      <div class="pulse" aria-hidden="true"><span></span><span></span><span></span></div>
+      <p id="work-msg" class="lead">Simplifying your text…</p>
+      <p class="muted" id="work-note">This takes a few seconds.</p>
+    </div>
+  </section>
+
+  <!-- Reader: pick level, listen -->
+  <section id="v-read" hidden>
+    <button id="b-new" class="back">← Add different text</button>
+    <h2 id="title" class="title"></h2>
+    <p id="notice" class="notice" hidden></p>
+
+    <p class="lbl" id="lbl-level">How simple should it be?</p>
+    <div id="levels" class="levels" role="radiogroup" aria-label="Simplicity level">
+      <button role="radio" data-level="0"><b>Original</b><small>Exact words</small></button>
+      <button role="radio" data-level="1"><b>Light</b><small>Plain words</small></button>
+      <button role="radio" data-level="2"><b>Simple</b><small>Short sentences</small></button>
+      <button role="radio" data-level="3"><b>Very simple</b><small>One idea each</small></button>
+    </div>
+
+    <details class="typebox cmdbox">
+      <summary id="cmd-sum">What can I say?</summary>
+      <p class="cmds" id="cmd-list"><b>pause</b> <b>play</b> <b>next</b> <b>back</b> <b>repeat</b> <b>simpler</b> <b>more detail</b> <b>original</b> <b>faster</b> <b>slower</b> <b>where am I</b> <b>what does hepatic mean</b> <b>read screen</b> <b>home</b> <b>stop listening</b></p>
+      <p class="muted small" id="cmd-note">Press 🎤 at the bottom right (or swipe up with two fingers), then speak. Reading pauses while I listen. With headphones, switch on “Always listening” below to speak at any moment.</p>
+    </details>
+
+    <p class="lbl" id="lbl-listen">Listen <span class="hint">Tap a sentence to hear it. Tap an <u>underlined word</u> for its meaning.</span></p>
+    <div id="sents" class="sents"></div>
+
+    <label class="switch"><input type="checkbox" id="show-orig"> <span id="show-orig-t">Show the original wording under each sentence</span></label>
+    <label class="switch"><input type="checkbox" id="always"> <span id="always-t">🎧 Always listening for commands (wear headphones, so I do not hear myself)</span></label>
+    <div id="end" class="endcard" hidden>
+      <p class="lead" id="end-q">That was the whole text. Was it clear?</p>
+      <div class="row">
+        <button id="b-yes" class="primary">Yes, clear</button>
+        <button id="b-no">No, make it simpler</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Player: always at the bottom while reading -->
+<div id="player" class="player" hidden>
+  <div class="player-top"><span id="p-pos">Part 1 of 1</span><span id="p-speed" class="heard">Speed 1.0×</span></div>
+  <div class="player-btns">
+    <button id="p-back" aria-label="Previous sentence">⏮</button>
+    <button id="p-play" class="playbtn" aria-label="Play">▶ Play</button>
+    <button id="p-next" aria-label="Next sentence">⏭</button>
+    <button id="p-slow" aria-label="Slower">🐢</button>
+    <button id="p-fast" aria-label="Faster">🐇</button>
+    <button id="p-mic" class="mic" aria-label="Speak a command">🎤</button>
+  </div>
+</div>
+
+<button id="voice-banner" class="voice-banner" hidden>🔊 No sound? Tap here to turn the voice on</button>
+<div id="toast" class="toast" role="status" hidden></div>
+<!-- Phones let a page read the clipboard only right after a tap: after a spoken "paste", one tap anywhere does it -->
+<button id="tap-paste" class="tap-overlay" hidden>👆 Tap anywhere to paste</button>
+
+<!-- Word meaning -->
+<div id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-word" aria-describedby="sheet-text" hidden>
+  <div class="sheet-card">
+    <h3 id="sheet-word"></h3>
+    <p id="sheet-text"></p>
+    <button id="sheet-close" class="primary">Close and keep reading</button>
+  </div>
+</div>
+
+<!-- Help -->
+<div id="help" class="sheet" role="dialog" aria-modal="true" aria-label="Help" hidden>
+  <div class="sheet-card tall">
+  <div id="help-en">
+    <h3>What SimpliSpeak does</h3>
+    <p>Hard text is difficult to listen to. SimpliSpeak rewrites it in simpler words, reads it aloud one sentence at a time, and lets <b>you</b> decide how simple it should be.</p>
+    <h3>Using it without looking</h3>
+    <ol>
+      <li>Tap anywhere on the opening screen. I will speak and tell you what is on the screen.</li>
+      <li>Say <b>paste</b>, <b>photo</b> or <b>example</b>, or press one of the three big buttons: top, middle, bottom.</li>
+      <li>I read the text. Say <b>simpler</b> or <b>more detail</b> at any time. You stay on the same sentence.</li>
+      <li>The big 🎤 button is at the bottom right. Tap it, wait for the beep, then speak.</li>
+      <li>Say <b>read screen</b>, or press 🔊 Read screen at the top, to hear the screen again.</li>
+    </ol>
+    <h3>Voice commands while reading</h3>
+    <p class="cmds"><b>next</b> <b>back</b> <b>repeat</b> <b>pause</b> <b>play</b> <b>simpler</b> <b>more detail</b> <b>original</b> <b>faster</b> <b>slower</b> <b>where am I</b> <b>what does hepatic mean</b> <b>home</b></p>
+    <h3>Touch controls (when you cannot see the screen)</h3>
+    <p class="cmds"><b>swipe right: next button</b> <b>swipe left: previous button</b> <b>double tap: choose</b> <b>tap: hear current button</b> <b>hold: read screen</b> <b>swipe up: simpler</b> <b>swipe down: more detail</b> <b>two-finger tap: pause or play</b> <b>two-finger swipe down: back</b> <b>two-finger swipe up: voice command</b></p>
+    <p class="muted small">Voice commands work in Chrome (Android) and Safari (iPhone), and need internet and microphone permission. Allow the microphone when asked.</p>
+    <h3>TalkBack or VoiceOver users</h3>
+    <p>Use <a href="classic.html">the accessibility version</a>, or choose "I use TalkBack or VoiceOver" on the opening screen so the two voices do not talk over each other.</p>
+  </div>
+  <div id="help-hi" lang="hi" hidden>
+    <h3>सिंपलीस्पीक क्या करता है</h3>
+    <p>कठिन लिखी बातें सुनकर समझना मुश्किल होता है। सिंपलीस्पीक उन्हें आसान शब्दों में बदलता है, एक-एक वाक्य पढ़कर सुनाता है, और <b>आप</b> तय करते हैं कि कितना आसान हो।</p>
+    <h3>बिना देखे इस्तेमाल</h3>
+    <ol>
+      <li>पहली स्क्रीन पर कहीं भी टैप करें। मैं बोलकर बताऊँगा कि स्क्रीन पर क्या है।</li>
+      <li>बोलें <b>पेस्ट</b>, <b>फोटो</b> या <b>उदाहरण</b>, या तीन बड़े बटनों में से कोई दबाएँ।</li>
+      <li>पढ़ते समय कभी भी बोलें <b>और आसान</b> या <b>विस्तार से</b>। आप उसी वाक्य पर रहते हैं।</li>
+      <li>🎤 बटन नीचे दाईं ओर है। उसे दबाएँ, बीप के बाद बोलें।</li>
+      <li>स्क्रीन दोबारा सुनने के लिए ऊपर "स्क्रीन सुनें" दबाएँ।</li>
+    </ol>
+    <h3>पढ़ते समय बोलने के शब्द</h3>
+    <p class="cmds"><b>आगे</b> <b>पीछे</b> <b>फिर से</b> <b>रुको</b> <b>चलाओ</b> <b>और आसान</b> <b>विस्तार से</b> <b>मूल</b> <b>तेज़</b> <b>धीरे</b> <b>मैं कहाँ हूँ</b> <b>पोटैशियम का मतलब क्या है</b> <b>होम</b></p>
+    <h3>टच से (बिना देखे)</h3>
+    <p class="cmds"><b>दाईं ओर स्वाइप: अगला बटन</b> <b>बाईं ओर स्वाइप: पिछला बटन</b> <b>दो बार टैप: चुनें</b> <b>उंगली दबाकर रखें: स्क्रीन सुनें</b> <b>ऊपर स्वाइप: और आसान</b> <b>नीचे स्वाइप: विस्तार से</b> <b>दो उंगलियों से टैप: रोकें या चलाएँ</b> <b>दो उंगलियों से ऊपर स्वाइप: बोलकर बताएँ</b> <b>दो उंगलियों से नीचे स्वाइप: वापस</b></p>
+  </div>
+    <button id="help-close" class="primary">Close help</button>
+  </div>
+</div>
+
+<script type="module" src="js/simple.js"></script>
+</body>
+</html>

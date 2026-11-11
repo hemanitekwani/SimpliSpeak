@@ -1,0 +1,259 @@
+{
+  "practice": {
+    "id": "practice",
+    "title": "Practice: a note from the library",
+    "kind": "Practice text",
+    "sentences": [
+      {
+        "original": "The central library will be closed for scheduled maintenance on Saturday, and all borrowed items may be returned via the external drop box.",
+        "light": "The main library will be closed for planned repairs on Saturday, and you can return borrowed items in the outside drop box.",
+        "simple": "The main library is closed on Saturday for repairs. You can still return books. Use the drop box outside.",
+        "very_simple": "The library is closed on Saturday. Use the box outside to return books."
+      },
+      {
+        "original": "Patrons wishing to renew their membership should do so prior to the expiry date in order to retain borrowing privileges.",
+        "light": "Members who want to renew should do it before the end date so they can keep borrowing books.",
+        "simple": "Do you want to keep borrowing books? Renew your membership before it ends.",
+        "very_simple": "Renew your card before it ends. Then you can keep borrowing."
+      },
+      {
+        "original": "Late fees of 5 rupees per day are applicable to overdue items.",
+        "light": "Late items cost 5 rupees for each day they are late.",
+        "simple": "Is a book late? You pay 5 rupees for each late day.",
+        "very_simple": "Late books cost 5 rupees a day."
+      }
+    ],
+    "glossary": {
+      "scheduled maintenance": "Planned repair work.",
+      "patrons": "People who use the library.",
+      "prior to": "Before.",
+      "expiry date": "The date something stops being valid.",
+      "retain": "Keep.",
+      "borrowing privileges": "Being allowed to borrow books.",
+      "overdue": "Late; not returned on time."
+    },
+    "questions": [
+      {"q": "On which day is the library closed?", "options": ["Friday", "Saturday", "Sunday", "Monday"], "answer": 1},
+      {"q": "How much is the late fee?", "options": ["5 rupees a day", "50 rupees a day", "5 rupees a week", "There is no fee"], "answer": 0}
+    ]
+  },
+
+  "leaflet": {
+    "id": "leaflet",
+    "title": "Medicine leaflet: Lisinor 10 mg tablets",
+    "kind": "Health",
+    "note": "Fictional medicine, written for this study. Not medical advice.",
+    "sentences": [
+      {
+        "original": "Lisinor 10 mg tablets are indicated for the treatment of hypertension in adults.",
+        "light": "Lisinor 10 mg tablets are used to treat high blood pressure in adults.",
+        "simple": "Lisinor 10 mg tablets treat high blood pressure. They are for adults.",
+        "very_simple": "This medicine is Lisinor 10 mg. It lowers high blood pressure. It is for adults."
+      },
+      {
+        "original": "The recommended dosage is one tablet administered orally once daily, preferably at the same time each morning.",
+        "light": "The usual dose is one tablet taken by mouth once a day, ideally at the same time each morning.",
+        "simple": "Take one tablet by mouth once a day. Try to take it at the same time each morning.",
+        "very_simple": "Take one tablet a day. Swallow it. Take it every morning."
+      },
+      {
+        "original": "Do not exceed the prescribed dose; if you miss a dose, take it as soon as you remember unless it is almost time for your next dose.",
+        "light": "Do not take more than your prescribed dose. If you miss a dose, take it when you remember, unless your next dose is due soon.",
+        "simple": "Never take more than your doctor said. Did you forget a tablet? Take it when you remember. But if the next one is due soon, skip the missed one.",
+        "very_simple": "Do not take extra tablets. Forgot one? Take it when you remember. Is the next one due soon? Then skip it."
+      },
+      {
+        "original": "Concomitant use with potassium supplements or potassium-sparing diuretics may result in elevated serum potassium levels.",
+        "light": "Taking it with potassium supplements or certain water tablets may raise the potassium in your blood.",
+        "simple": "Taking it with potassium pills or some water tablets can raise the potassium in your blood.",
+        "very_simple": "Potassium pills can cause a problem with this medicine. So can some water tablets. They raise potassium in your blood."
+      },
+      {
+        "original": "Common adverse effects include dizziness, headache and a persistent dry cough, affecting up to 1 in 10 people.",
+        "light": "Common side effects are dizziness, headache and a dry cough that does not go away. Up to 1 in 10 people get them.",
+        "simple": "It may make you dizzy. It may give you a headache. It may cause a dry cough that lasts. Up to 1 in 10 people get these.",
+        "very_simple": "You may feel dizzy. Your head may hurt. You may get a dry cough. Up to 1 in 10 people get this."
+      },
+      {
+        "original": "Discontinue use and seek immediate medical attention if you experience difficulty breathing, swelling of the face, or severe skin reactions.",
+        "light": "Stop taking it and get medical help right away if you have trouble breathing, a swollen face, or bad skin reactions.",
+        "simple": "Stop the medicine right away if you cannot breathe well. Stop if your face swells. Stop if your skin is very sore. Call a doctor now.",
+        "very_simple": "Stop the medicine. Call a doctor now if you cannot breathe. Call now if your face swells. Call now if your skin hurts badly."
+      },
+      {
+        "original": "Consult your physician before use if you are pregnant, planning a pregnancy or breastfeeding, or if you have a history of renal or hepatic impairment.",
+        "light": "Talk to your doctor before taking it if you are pregnant, planning a baby or breastfeeding, or if you have had kidney or liver problems.",
+        "simple": "Ask your doctor first if you are pregnant or want a baby. Ask first if you are breastfeeding. Ask first if you have had kidney or liver problems.",
+        "very_simple": "Pregnant? Ask your doctor first. Want a baby? Ask first. Breastfeeding? Ask first. Kidney or liver problems? Ask first."
+      },
+      {
+        "original": "Store below 25°C in the original packaging and keep out of the sight and reach of children.",
+        "light": "Keep it below 25°C in its box, where children cannot see or reach it.",
+        "simple": "Keep it below 25°C. Keep it in its box. Keep it away from children.",
+        "very_simple": "Keep it cool, below 25 degrees. Keep it in the box. Keep it away from children."
+      }
+    ],
+    "glossary": {
+      "indicated for": "Used for; what the medicine is meant to treat.",
+      "hypertension": "High blood pressure.",
+      "dosage": "How much medicine to take, and how often.",
+      "administered orally": "Taken by mouth, swallowed.",
+      "exceed": "Go over a limit.",
+      "prescribed": "Ordered for you by a doctor.",
+      "concomitant": "At the same time. Here: taking two medicines together.",
+      "potassium": "A mineral in your blood. Too much can harm your heart.",
+      "potassium-sparing diuretics": "Water tablets that keep potassium in your body.",
+      "serum": "The liquid part of your blood.",
+      "adverse effects": "Side effects; unwanted effects of a medicine.",
+      "persistent": "Lasting; not going away.",
+      "discontinue": "Stop taking it.",
+      "physician": "A doctor.",
+      "renal": "To do with the kidneys.",
+      "hepatic": "To do with the liver.",
+      "impairment": "When a part of the body does not work well."
+    },
+    "questions": [
+      {"q": "How many tablets should you take each day?", "options": ["One", "Two", "Three", "As many as you need"], "answer": 0},
+      {"q": "What should you do if your face swells?", "options": ["Stop the medicine and get medical help now", "Take an extra tablet", "Wait one week", "Drink more water"], "answer": 0},
+      {"q": "Which of these may be a problem to take with this medicine?", "options": ["Iron tablets", "Potassium supplements", "Vitamin C", "Calcium"], "answer": 1},
+      {"q": "Below what temperature should you store it?", "options": ["15 degrees", "25 degrees", "35 degrees", "There is no limit"], "answer": 1}
+    ]
+  },
+
+  "bank": {
+    "id": "bank",
+    "title": "Bank letter: update your KYC documents",
+    "kind": "Money",
+    "note": "Fictional letter written for this study.",
+    "sentences": [
+      {
+        "original": "We are writing to inform you that, pursuant to a periodic review of your account, your KYC documentation requires re-verification.",
+        "light": "We are writing to tell you that, after a regular check of your account, we need to check your identity documents again.",
+        "simple": "We checked your account, as we do from time to time. We need to check your ID papers again.",
+        "very_simple": "We need to check your ID again. This is a normal check."
+      },
+      {
+        "original": "Failure to submit the requisite documents by 15 March 2026 will result in the temporary suspension of debit transactions on your account.",
+        "light": "If you do not send the needed documents by 15 March 2026, you will not be able to take money out of your account for a while.",
+        "simple": "Send the papers by 15 March 2026. If you do not, you cannot take money out of your account for a while.",
+        "very_simple": "Send your papers by 15 March 2026. If not, you cannot take out money for some time."
+      },
+      {
+        "original": "Credits to the account, including salary and pension, will continue to be processed during any period of suspension.",
+        "light": "Money coming into the account, like salary and pension, will still be added during this time.",
+        "simple": "Money can still come in during this time. Your salary and pension will still arrive.",
+        "very_simple": "Money can still come in. Your salary and pension still arrive."
+      },
+      {
+        "original": "Acceptable documents comprise a valid Aadhaar card, passport, or voter identity card, together with a recent photograph.",
+        "light": "You can send a valid Aadhaar card, passport or voter ID card, along with a recent photo.",
+        "simple": "Send an Aadhaar card, a passport, or a voter ID card. Also send a recent photo.",
+        "very_simple": "Send one ID card. Aadhaar, passport or voter ID is fine. Add a new photo."
+      },
+      {
+        "original": "Documents may be submitted at any branch, or electronically via the mobile banking application under Profile, then Update KYC.",
+        "light": "You can hand in the documents at any branch, or online in the mobile banking app under Profile, then Update KYC.",
+        "simple": "You can go to any branch. Or you can use the bank app. In the app, go to Profile, then Update KYC.",
+        "very_simple": "Go to any branch. Or use the bank app. Tap Profile. Then tap Update KYC."
+      },
+      {
+        "original": "Please note that the bank will never request your PIN, password or one-time passcode by telephone or email.",
+        "light": "Please note: the bank will never ask for your PIN, password or one-time code by phone or email.",
+        "simple": "The bank will never ask for your PIN or password. It will never ask for a one-time code. Not by phone, and not by email.",
+        "very_simple": "We never ask for your PIN. We never ask for your password or code. Not by phone. Not by email."
+      },
+      {
+        "original": "For assistance, contact our helpline on 1800 425 0018, available 24 hours a day.",
+        "light": "For help, call our helpline on 1800 425 0018, open 24 hours a day.",
+        "simple": "Need help? Call 1800 425 0018. It is open 24 hours a day.",
+        "very_simple": "Need help? Call 1800 425 0018. Call any time, 24 hours a day."
+      }
+    ],
+    "glossary": {
+      "pursuant to": "Because of, or following.",
+      "periodic review": "A check the bank does from time to time.",
+      "KYC": "Know Your Customer: the bank checking who you are.",
+      "re-verification": "Checking again that something is correct.",
+      "requisite": "Needed.",
+      "suspension": "A stop for a while.",
+      "debit transactions": "Money going out of your account, like cash withdrawals and payments.",
+      "credits": "Money paid into your account.",
+      "comprise": "Are made up of.",
+      "electronically": "Online, using a phone or computer.",
+      "one-time passcode": "A short code sent to you that works only once."
+    },
+    "questions": [
+      {"q": "By what date must you send your documents?", "options": ["15 March 2026", "15 May 2026", "1 March 2026", "There is no date"], "answer": 0},
+      {"q": "What still works if your account is paused?", "options": ["Salary and pension coming in", "Taking out cash", "Card payments", "Nothing works"], "answer": 0},
+      {"q": "Which document can you send?", "options": ["Driving licence", "Aadhaar card", "Electricity bill", "School certificate"], "answer": 1},
+      {"q": "Will the bank ever ask for your PIN by phone?", "options": ["Yes, sometimes", "No, never", "Only on weekends", "Only once a year"], "answer": 1}
+    ]
+  },
+
+  "bill": {
+    "id": "bill",
+    "title": "Electricity bill notice",
+    "kind": "Money",
+    "note": "Fictional bill written for this study.",
+    "sentences": [
+      {
+        "original": "Your electricity bill for the billing period 1 September to 30 September amounts to ₹2,340, inclusive of applicable taxes.",
+        "light": "Your electricity bill for 1 September to 30 September is ₹2,340, including taxes.",
+        "simple": "Your power bill is ₹2,340. It covers 1 September to 30 September. Tax is included.",
+        "very_simple": "You owe ₹2,340 for power. This is for 1 September to 30 September. Tax is in it."
+      },
+      {
+        "original": "Payment must be remitted on or before 20 October to avoid a late payment surcharge of 2% of the outstanding amount.",
+        "light": "Pay on or before 20 October to avoid a late fee of 2% of the amount you owe.",
+        "simple": "Pay by 20 October. Do not pay late. If you do, you pay 2% extra.",
+        "very_simple": "Pay by 20 October. Late? Then you pay 2% more. Do not be late."
+      },
+      {
+        "original": "Your consumption of 312 units exceeds the subsidised threshold of 200 units; consequently, units above this limit are charged at the higher slab rate of ₹7.50 per unit.",
+        "light": "You used 312 units, which is more than the 200 units that get a lower price, so the extra units cost the higher rate of ₹7.50 each.",
+        "simple": "You used 312 units. The first 200 units are cheaper. Each unit above 200 costs ₹7.50.",
+        "very_simple": "You used 312 units. The first 200 cost less. Each extra unit costs ₹7.50."
+      },
+      {
+        "original": "Should the bill remain unpaid for a period exceeding 30 days beyond the due date, the supply may be disconnected without further notice.",
+        "light": "If the bill is still unpaid more than 30 days after the due date, your power may be cut off without another warning.",
+        "simple": "Do not leave the bill unpaid for more than 30 days after the due date. If you do, your power may be cut off. You may get no more warnings.",
+        "very_simple": "Pay within 30 days of the due date. If not, your power may be cut. You will get no more warnings."
+      },
+      {
+        "original": "Payments can be made through the utility's website, authorised UPI applications, or at any designated collection centre.",
+        "light": "You can pay on the power company's website, with approved UPI apps, or at any official payment centre.",
+        "simple": "You can pay on the website. You can pay with a UPI app. Or you can pay at a payment centre.",
+        "very_simple": "Pay on the website. Or pay with a UPI app. Or pay at a centre."
+      },
+      {
+        "original": "Consumers eligible for the senior citizen rebate of 5% must register their date of birth with the customer care department.",
+        "light": "People who can get the 5% discount for senior citizens must give their date of birth to customer care.",
+        "simple": "Are you a senior citizen? You may get 5% off. Tell customer care your date of birth to get it.",
+        "very_simple": "Older people can get 5% off. Tell customer care your date of birth."
+      }
+    ],
+    "glossary": {
+      "billing period": "The dates this bill covers.",
+      "inclusive of": "Including.",
+      "remitted": "Paid.",
+      "surcharge": "An extra fee added to the bill.",
+      "outstanding amount": "The money you still owe.",
+      "consumption": "How much electricity you used.",
+      "units": "How electricity use is measured. One unit is one kilowatt hour.",
+      "subsidised threshold": "The amount you can use at a lower, government-supported price.",
+      "slab rate": "The price per unit for that band of use.",
+      "disconnected": "Switched off.",
+      "UPI": "A way to pay from your phone straight from your bank account.",
+      "designated": "Officially chosen.",
+      "rebate": "A discount; money taken off.",
+      "eligible": "Allowed to get something."
+    },
+    "questions": [
+      {"q": "How much is the bill?", "options": ["₹2,340", "₹3,240", "₹234", "₹7.50"], "answer": 0},
+      {"q": "What is the last day to pay without a late fee?", "options": ["30 September", "1 October", "20 October", "30 October"], "answer": 2},
+      {"q": "How many units did you use?", "options": ["200", "312", "30", "750"], "answer": 1},
+      {"q": "How much discount can senior citizens get?", "options": ["2%", "5%", "7.5%", "10%"], "answer": 1}
+    ]
+  }
+}
